@@ -1149,7 +1149,7 @@ const AdminDashboardNew = ({
         <div className="bg-gray-50 dark:bg-gray-800 px-3 py-2">
           <div className="flex justify-between items-center gap-2">
             <div>
-              <h1 className="text-4xl font-medium items-center text-left" style={{ color: '#16a34a' }}>
+              <h1 className="text-4xl font-medium items-center text-left" style={{ color: '#16a34a', width: '100%' }}>
                 GreenMatrix Panel
               </h1>
             </div>
@@ -1159,7 +1159,7 @@ const AdminDashboardNew = ({
               <select
                 value={selectedRegion}
                 onChange={(e) => setSelectedRegion(e.target.value)}
-                className="px-6 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 w-90 h-10 focus:ring-2 focus:ring-[#01a982]"
+                className="px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 max-w-40 h-10 focus:ring-2 focus:ring-[#01a982]"
               >
                 <option default value="">Cost Calculation Region</option>
                 {availableRegions.map(region => (
@@ -1173,7 +1173,7 @@ const AdminDashboardNew = ({
               <select
                 value={viewMode}
                 onChange={(e) => setViewMode(e.target.value)}
-                className="px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600  w-85 h-10 focus:ring-2 focus:ring-[#01a982]"
+                className="px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 w-90 h-10 focus:ring-2 focus:ring-[#01a982]"
               >
                 <option value="day">Daily</option>
                 <option value="week">Weekly</option>
@@ -1207,7 +1207,7 @@ const AdminDashboardNew = ({
               {/* Report Button */}
               <button
                 onClick={handleDownloadReport}
-                className="px-6 ml-[20px] py-2.5 bg-[#008060] hover:bg-[#00694d] text-white rounded-full text-base font-medium flex items-center gap-2 h-11 transition-colors"
+                className="px-4 ml-[20px] py-2.5 bg-[#008060] hover:bg-[#00694d] text-white rounded-full text-base font-medium flex items-center gap-2 h-11 transition-colors"
               >
                 Report
                 <Download className="w-5 h-5" />
@@ -1451,7 +1451,7 @@ const AdminDashboardNew = ({
         </div>
 
         {/* Middle Section: Performance Analytics (Left) + VM Monitoring & Insights (Right) */}
-        <div className="grid grid-cols-5 gap-6" style={{ marginTop: '24px'}}>
+        <div className="grid grid-cols-5 gap-6" style={{ marginTop: '24px' }}>
 
           {/* Performance Analytics (Revised Layout) */}
           <div className="col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 pt-4 w-full max-w-xl">
@@ -1620,7 +1620,7 @@ const AdminDashboardNew = ({
         </div>
 
         {/* Process Monitoring Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl  shadow-sm border border-gray-200 dark:border-gray-700" style={{ marginTop: '24px'}}>
+        <div className="bg-white dark:bg-gray-800 rounded-xl  shadow-sm border border-gray-200 dark:border-gray-700" style={{ marginTop: '24px' }}>
           <div className="px-6 py-4 border-b border-gray-200 dark:text-white dark:border-gray-700">
             <div className="flex items-center justify-between mb-8">
               <h3 className="text-[24px] dark:text-white font-normal text-gray-900">

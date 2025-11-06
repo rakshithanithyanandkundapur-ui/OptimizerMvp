@@ -223,7 +223,7 @@ const CostManagementTab = () => {
         )}
 
         {/* Cost Models Table */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:border-gray-700 overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:border-gray-700 overflow-hidden mt-6">
           <div className="px-2 py-4 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between">
               {/* Left: Title */}
