@@ -1,6 +1,5 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { Download } from 'lucide-react';
-import logo from '../assets/logo.png';
 
 const SystemInsightsGenerator = ({ processData, vmData, selectedDate, viewMode, hostMetrics, timeRangeDays = 7 }) => {
   const [backendRecommendations, setBackendRecommendations] = useState(null);
@@ -473,42 +472,42 @@ const SystemInsightsGenerator = ({ processData, vmData, selectedDate, viewMode, 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HPE GreenMatrix - System Insights Report</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPE GreenMatrix - System Insights Report</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      margin: 20px;
-      color: #1f2937;
-      line-height: 1.5;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 20px;
+            color: #1f2937;
+            line-height: 1.5;
+        }
 
-    .report-container {
-      max-width: 100%;
-      margin: 0 auto;
-      background: #f3f4f6;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
+        .report-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
 
         .report-header {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
             text-align: center;
             margin-bottom: 30px;
+            border-bottom: 3px solid #10b981;
+            padding-bottom: 20px;
+            background: white;
             padding: 40px;
         }
 
         .report-header h1 {
-            color: #10b981;
+            color: #111827;
             margin: 0;
-            font-size: 30px;
-            font-weight: 500;
+            font-size: 32px;
+            font-weight: 700;
         }
 
         .report-header .subtitle {
@@ -527,26 +526,30 @@ const SystemInsightsGenerator = ({ processData, vmData, selectedDate, viewMode, 
         }
 
         .meta-item {
-          text-align: center;
-          padding: 12px 20px;
+            text-align: center;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 12px 20px;
+            border-radius: 8px;
         }
 
         .meta-label {
-          font-size: 12px;
-          color: #111827;
-          margin-bottom: 4px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .meta-value {
-          font-size: 16px;
-          font-weight: 600;
-          color: #008060;
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
         }
         
         .report-summary {
             padding: 30px 40px;
+            background: white;
             border-bottom: 1px solid #e5e7eb;
         }
 
@@ -769,75 +772,6 @@ const SystemInsightsGenerator = ({ processData, vmData, selectedDate, viewMode, 
             margin-bottom: 10px;
         }
         
-        .dashboard {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #1c9c6d;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .cards {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 20px;
-      flex: 1 1 260px;
-      min-width: 260px;
-      max-width: 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .card h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #333;
-    }
-
-    .metric {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      padding: 4px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .metric:last-child {
-      border-bottom: none;
-    }
-
-    .icon {
-      width: 20px;
-      height: 20px;
-      background-color: #1c9c6d;
-      border-radius: 4px;
-      display: inline-block;
-    }
-
-    .highlight {
-      color: #1c9c6d;
-      font-weight: 600;
-    }
-        
         @media print {
             body { background: white; padding: 0; }
             .report-container { box-shadow: none; border-radius: 0; }
@@ -856,70 +790,33 @@ const SystemInsightsGenerator = ({ processData, vmData, selectedDate, viewMode, 
 <body>
     <div class="report-container">
         <header class="report-header">
-          <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 16px;">
-            <img src="/assets/logo.png" alt="HPE Logo" style="width:72px;height:24px;object-fit:contain;" />
-          </div>
-            <h1>GreenMatrix Host Analysis Report</h1>
+            <h1>GreenMatrix System Analysis Report</h1>
+            <div class="subtitle">Host Infrastructure Performance & Optimization Analysis</div>
             <div class="report-meta">
                 <div class="meta-item">
-                    <div class="meta-label">Bare Metal Host</div>
-                    <div class="meta-value">bare-metal-host</div>
+                    <div class="meta-label">Analysis Date</div>
+                    <div class="meta-value">${summary.analysisDate}</div>
                 </div>
                 <div class="meta-item">
-                    <div class="meta-label">Analysis Period</div>
-                    <div class="meta-value">Last 7 days</div>
+                    <div class="meta-label">Analysis Time</div>
+                    <div class="meta-value">${summary.analysisTime}</div>
                 </div>
                 <div class="meta-item">
-                    <div class="meta-label">Generated</div>
-                    <div class="meta-value">23/9/2025, 11:26:10 am</div>
+                    <div class="meta-label">Analysis Type</div>
+                    <div class="meta-value">${summary.analysisDescription}</div>
                 </div>
+                <div class="meta-item">
+                    <div class="meta-label">Total Recommendations</div>
+                    <div class="meta-value">${totalRecommendations}</div>
+                </div>
+                ${totalPotentialSavings > 0 ? `
+                <div class="meta-item">
+                    <div class="meta-label">Potential Annual Savings</div>
+                    <div class="meta-value">$${totalPotentialSavings.toLocaleString()}+</div>
+                </div>
+                ` : ''}
             </div>
         </header>
-
-        <div class="dashboard">
-    <div class="title">
-      <div class="icon"></div>
-      Resource Utilization Analysis
-    </div>
-
-    <div class="cards">
-      <div class="card">
-        <h3><div class="icon"></div>CPU Performance</h3>
-        <div class="metric"><span>Average Usage</span><span class="highlight">51.73%</span></div>
-        <div class="metric"><span>Peak Usage</span><span class="highlight">86.5%</span></div>
-        <div class="metric"><span>95th Percentile</span><span class="highlight">69.9%</span></div>
-        <div class="metric"><span>Process Avg</span><span class="highlight">0.67%</span></div>
-        <div class="metric"><span>Volatility</span><span class="highlight">69.9%</span></div>
-      </div>
-
-      <div class="card">
-        <h3><div class="icon"></div>Memory Utilization</h3>
-        <div class="metric"><span>Average Usage</span><span class="highlight">51.73%</span></div>
-        <div class="metric"><span>Peak Usage</span><span class="highlight">86.5%</span></div>
-        <div class="metric"><span>95th Percentile</span><span class="highlight">69.9%</span></div>
-        <div class="metric"><span>Process Avg</span><span class="highlight">0.67%</span></div>
-        <div class="metric"><span>Volatility</span><span class="highlight">69.9%</span></div>
-      </div>
-
-      <div class="card">
-        <h3><div class="icon"></div>GPU Performance</h3>
-        <div class="metric"><span>Average Usage</span><span class="highlight">51.73%</span></div>
-        <div class="metric"><span>Peak Usage</span><span class="highlight">86.5%</span></div>
-        <div class="metric"><span>95th Percentile</span><span class="highlight">69.9%</span></div>
-        <div class="metric"><span>Avg Temperature</span><span class="highlight">0°C</span></div>
-        <div class="metric"><span>Volatility</span><span class="highlight">69.9%</span></div>
-      </div>
-
-      <div class="card">
-        <h3><div class="icon"></div>Power Consumption</h3>
-        <div class="metric"><span>Average Power</span><span class="highlight">0.34W</span></div>
-        <div class="metric"><span>Peak Power</span><span class="highlight">184.62W</span></div>
-        <div class="metric"><span>GPU Power</span><span class="highlight">0W</span></div>
-        <div class="metric"><span>Power Volatility</span><span class="highlight">101.3W</span></div>
-        <div class="metric"><span>Total Energy</span><span class="highlight">56.8004 kWh</span></div>
-      </div>
-    </div>
-  </div>
 
         <section class="report-summary">
             <h2 style="margin-bottom: 20px; color: #374151;">Executive Summary</h2>
@@ -1058,8 +955,8 @@ const SystemInsightsGenerator = ({ processData, vmData, selectedDate, viewMode, 
     const recommendations = (backendData.recommendations || []).filter(r =>
       !(r.category === 'cost_optimization' &&
         (r.title?.toLowerCase().includes('region') ||
-          r.title?.toLowerCase().includes('migration') ||
-          r.description?.toLowerCase().includes('migrate to')))
+         r.title?.toLowerCase().includes('migration') ||
+         r.description?.toLowerCase().includes('migrate to')))
     );
     const analysisDate = backendData.analysis_period || `Last ${timeRangeDays} days`;
 
@@ -1298,37 +1195,37 @@ const SystemInsightsGenerator = ({ processData, vmData, selectedDate, viewMode, 
                 <div style="margin: 15px 0; padding: 12px; background: #fef3c7; border-radius: 6px; border-left: 3px solid #f59e0b;">
                   <h5 style="margin: 0 0 8px 0; color: #92400e; font-size: 14px;">Supporting Analysis</h5>
                   ${Object.entries(rec.analysis).map(([key, value]) => {
-      const formattedKey = key.replace(/_/g, ' ').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-      return `<p style="margin: 4px 0; color: #78350f; font-size: 13px;"><strong>${formattedKey}:</strong> ${typeof value === 'number' ? value.toFixed(1) : value}</p>`;
-    }).join('')}
+                    const formattedKey = key.replace(/_/g, ' ').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                    return `<p style="margin: 4px 0; color: #78350f; font-size: 13px;"><strong>${formattedKey}:</strong> ${typeof value === 'number' ? value.toFixed(1) : value}</p>`;
+                  }).join('')}
                 </div>
               ` : rec.statistics ? `
                 <div style="margin: 15px 0; padding: 12px; background: #fef3c7; border-radius: 6px; border-left: 3px solid #f59e0b;">
                   <h5 style="margin: 0 0 8px 0; color: #92400e; font-size: 14px;">Key Metrics</h5>
                   ${Object.entries(rec.statistics).map(([key, value]) => {
-      const formattedKey = key.replace(/_/g, ' ').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                    const formattedKey = key.replace(/_/g, ' ').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
-      // Format value based on type
-      let formattedValue;
-      if (typeof value === 'number') {
-        formattedValue = value.toFixed(1);
-      } else if (Array.isArray(value)) {
-        // Handle arrays of process objects
-        if (value.length > 0 && typeof value[0] === 'object' && value[0].process_name) {
-          formattedValue = value.map(proc =>
-            `${proc.process_name} (efficiency: ${proc.cpu_efficiency_per_watt?.toFixed(3) || 'N/A'} CPU%/W)`
-          ).join(', ');
-        } else {
-          formattedValue = value.join(', ');
-        }
-      } else if (typeof value === 'object' && value !== null) {
-        formattedValue = JSON.stringify(value);
-      } else {
-        formattedValue = value;
-      }
+                    // Format value based on type
+                    let formattedValue;
+                    if (typeof value === 'number') {
+                      formattedValue = value.toFixed(1);
+                    } else if (Array.isArray(value)) {
+                      // Handle arrays of process objects
+                      if (value.length > 0 && typeof value[0] === 'object' && value[0].process_name) {
+                        formattedValue = value.map(proc =>
+                          `${proc.process_name} (efficiency: ${proc.cpu_efficiency_per_watt?.toFixed(3) || 'N/A'} CPU%/W)`
+                        ).join(', ');
+                      } else {
+                        formattedValue = value.join(', ');
+                      }
+                    } else if (typeof value === 'object' && value !== null) {
+                      formattedValue = JSON.stringify(value);
+                    } else {
+                      formattedValue = value;
+                    }
 
-      return `<p style="margin: 4px 0; color: #78350f; font-size: 13px;"><strong>${formattedKey}:</strong> ${formattedValue}</p>`;
-    }).join('')}
+                    return `<p style="margin: 4px 0; color: #78350f; font-size: 13px;"><strong>${formattedKey}:</strong> ${formattedValue}</p>`;
+                  }).join('')}
                 </div>
               ` : ''}
 
