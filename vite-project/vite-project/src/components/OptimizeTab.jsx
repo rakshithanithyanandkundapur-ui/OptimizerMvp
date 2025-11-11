@@ -1782,7 +1782,7 @@ const OptimizeTab = () => {
           {/* Action Buttons */}
           <div className="flex justify-end gap-3">
             <button className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-sm font-medium">
-              Configuration
+              Configuration Recommendation
             </button>
             <button 
               onClick={handleGetRecommendations}
