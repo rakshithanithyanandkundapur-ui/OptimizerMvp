@@ -104,8 +104,8 @@ const Sidebar = ({ activeSection, setActiveSection, activeTab, setActiveTab, isC
         setActiveSection('administration');
         setActiveTab(item.id);
       } else {
-        // Navigate to Admin page
-        navigate('/');
+        // Navigate to Admin page WITH tab information
+        navigate('/', { state: { tab: item.id, section: 'administration' } });
       }
     }
     // Handle Process Metrics separately
@@ -120,8 +120,8 @@ const Sidebar = ({ activeSection, setActiveSection, activeTab, setActiveTab, isC
         setActiveSection('greenmatrix');
         setActiveTab(item.id);
       } else {
-        // Navigate to GreenMatrix workload page
-        navigate('/workload');
+        // Navigate to GreenMatrix workload page WITH tab information
+        navigate('/workload', { state: { tab: item.id, section: 'greenmatrix' } });
       }
     } else {
       setActiveSection(item.id);
