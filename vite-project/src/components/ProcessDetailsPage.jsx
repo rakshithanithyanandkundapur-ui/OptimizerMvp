@@ -329,10 +329,17 @@ const ProcessDetailsPage = () => {
   };
 
   // Filter processes based on search term (API already returns latest data only)
-  const filteredProcesses = processData.filter(process =>
-    process['Process Name'].toLowerCase().includes(searchTerm.toLowerCase()) ||
-    process['Username'].toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Search persists across 5-second data refreshes automatically
+  const filteredProcesses = processData.filter(process => {
+    // If no search term, show all processes (optimization)
+    if (!searchTerm.trim()) return true;
+
+    const search = searchTerm.toLowerCase().trim();
+    return (
+      process['Process Name']?.toLowerCase().includes(search) ||
+      process['Username']?.toLowerCase().includes(search)
+    );
+  });
 
   // Export data
   const exportToCSV = () => {
@@ -565,7 +572,32 @@ const ProcessDetailsPage = () => {
                         </tr>
                       </thead>
                       <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                        {filteredProcesses.map((process, index) => (
+                        {filteredProcesses.length === 0 ? (
+                          <tr>
+                            <td colSpan="15" className="px-4 py-12 text-center">
+                              <div className="flex flex-col items-center justify-center">
+                                <svg className="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                                <p className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                                  {searchTerm ? 'No processes match your search' : 'No processes found'}
+                                </p>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                  {searchTerm ? `Try searching for "${searchTerm}" with a different term` : 'Waiting for process data...'}
+                                </p>
+                                {searchTerm && (
+                                  <button
+                                    onClick={() => setSearchTerm('')}
+                                    className="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                                  >
+                                    Clear Search
+                                  </button>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        ) : (
+                          filteredProcesses.map((process, index) => (
                           <tr
                             key={process['Process ID'] + index}
                             onClick={() => handleProcessClick(process)}
@@ -632,7 +664,8 @@ const ProcessDetailsPage = () => {
                               </span>
                             </td>
                           </tr>
-                        ))}
+                          ))
+                        )}
                       </tbody>
                     </table>
                   </div>

@@ -6,6 +6,7 @@ const HardwareTab = () => {
   const [hardwareData, setHardwareData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Modal states
   const [showAddModal, setShowAddModal] = useState(false);
@@ -246,6 +247,19 @@ const HardwareTab = () => {
   console.log('Unified hardware data:', unifiedHardwareData);
   console.log('Unified hardware data length:', unifiedHardwareData.length);
 
+  // Filter hardware data based on search term
+  const filteredHardwareData = unifiedHardwareData.filter(hw => {
+    if (!searchTerm.trim()) return true;
+    const search = searchTerm.toLowerCase();
+    return (
+      hw.cpuModel?.toLowerCase().includes(search) ||
+      hw.cpuBrand?.toLowerCase().includes(search) ||
+      hw.gpuModel?.toLowerCase().includes(search) ||
+      hw.gpuBrand?.toLowerCase().includes(search) ||
+      hw.id?.toString().includes(search)
+    );
+  });
+
   // Loading state
   if (loading) {
     return (
@@ -312,15 +326,17 @@ const HardwareTab = () => {
           <div className="relative w-[400px]">
             <input
               type="text"
-              placeholder="Search"
-              className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-lg text-gray-700 placeholder-gray-500 text-base focus:outline-none focus:ring-1 focus:ring-gray-500"
+              placeholder="Search by CPU, GPU, brand, or ID..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-lg text-gray-700 dark:text-white dark:bg-gray-700 placeholder-gray-500 text-base focus:outline-none focus:ring-1 focus:ring-gray-500"
             />
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 font-bolder text-gray-900" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 font-bolder text-gray-900 dark:text-gray-400" />
           </div>
 
           {/* Filter Button */}
-          <button className="p-2 border border-gray-400 rounded-lg hover:bg-gray-100 transition-colors">
-            <Funnel className="w-5 h-5 text-gray-600" />
+          <button className="p-2 border border-gray-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+            <Funnel className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
         </div>
 
@@ -342,20 +358,22 @@ const HardwareTab = () => {
                 </tr>
               </thead>
               <tbody className="bg-gray-50 dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                {unifiedHardwareData.length === 0 ? (
+                {filteredHardwareData.length === 0 ? (
                   <tr>
                     <td colSpan="9" className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
                       <div>
                         <div className="text-2xl mb-2">🔧</div>
-                        <div className="font-medium mb-1">No hardware found in database</div>
+                        <div className="font-medium mb-1">
+                          {searchTerm ? 'No hardware matches your search' : 'No hardware found in database'}
+                        </div>
                         <div className="text-sm text-gray-400">
-                          {loading ? 'Loading...' : `API Response: ${hardwareData.length} records`}
+                          {searchTerm ? `Searching for "${searchTerm}"` : (loading ? 'Loading...' : `API Response: ${hardwareData.length} records`)}
                         </div>
                       </div>
                     </td>
                   </tr>
                 ) : (
-                  unifiedHardwareData.map((hw) => (
+                  filteredHardwareData.map((hw) => (
                     <tr key={hw.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                       {/* ID */}
                       <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">

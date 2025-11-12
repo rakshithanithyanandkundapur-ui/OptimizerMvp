@@ -334,9 +334,11 @@ const AIModelManagementTab = () => {
               <input
                 type="text"
                 placeholder="Search"
-                className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-lg dark:bg-gray-800 text-gray-700 placeholder-gray-500 text-base focus:outline-none focus:ring-1 focus:ring-gray-500"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-lg dark:bg-gray-800 text-gray-700 dark:text-white placeholder-gray-500 text-base focus:outline-none focus:ring-1 focus:ring-gray-500"
               />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 font-bolder text-gray-900" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 font-bolder text-gray-900 dark:text-gray-400" />
             </div>
 
             {/* Filter Button */}
