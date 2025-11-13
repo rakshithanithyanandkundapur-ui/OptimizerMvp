@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Hpe, Moon, Sun, User, Notification, HelpOption } from 'grommet-icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import DatePicker from 'react-datepicker';
 import { useDarkMode } from '../contexts/DarkModeContext';
@@ -16,12 +16,17 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/datepicker.css';
 
 const AdminPage = () => {
-  const [activeAdminTab, setActiveAdminTab] = useState('dashboard');
+  const location = useLocation();
+  
+  const navState = location.state || {};
+  const initialAdminTab = navState.targetTab || 'dashboard';
+  const initialSection = navState.targetSection || 'administration';
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { openWalkthrough } = useWalkthrough();
 
   // Navigation state
-  const [activeSection, setActiveSection] = useState('administration');
+  const [activeAdminTab, setActiveAdminTab] = useState(initialAdminTab);
+  const [activeSection, setActiveSection] = useState(initialSection);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   // State for API data

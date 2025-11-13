@@ -246,35 +246,35 @@ const HardwareTab = () => {
   console.log('Unified hardware data:', unifiedHardwareData);
   console.log('Unified hardware data length:', unifiedHardwareData.length);
 
-  // Loading state
-  if (loading) {
-    return (
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-        <div className="p-8 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-300">Loading hardware data...</p>
-        </div>
-      </div>
-    );
-  }
+  // // Loading state
+  // if (loading) {
+  //   return (
+  //     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+  //       <div className="p-8 text-center">
+  //         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
+  //         <p className="text-gray-600 dark:text-gray-300">Loading hardware data...</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
-  // Error state
-  if (error) {
-    return (
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-        <div className="p-8 text-center">
-          <div className="text-red-500 text-xl mb-4">⚠️</div>
-          <p className="text-gray-600 dark:text-gray-300 mb-4">{error}</p>
-          <button 
-            onClick={() => window.location.reload()} 
-            className="px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // // Error state
+  // if (error) {
+  //   return (
+  //     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+  //       <div className="p-8 text-center">
+  //         <div className="text-red-500 text-xl mb-4">⚠️</div>
+  //         <p className="text-gray-600 dark:text-gray-300 mb-4">{error}</p>
+  //         <button 
+  //           onClick={() => window.location.reload()} 
+  //           className="px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors"
+  //         >
+  //           Retry
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="space-y-6">
@@ -451,8 +451,8 @@ const HardwareTab = () => {
 
         {/* Add Hardware Modal */}
         {showAddModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-2xl max-h-screen overflow-y-auto">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Add Hardware</h2>
                 <button

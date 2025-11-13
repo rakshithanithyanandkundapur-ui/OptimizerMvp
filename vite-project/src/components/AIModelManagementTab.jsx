@@ -447,8 +447,8 @@ const AIModelManagementTab = () => {
 
         {/* Add Model Modal */}
         {showAddModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-4xl w-full max-h-[80vh] flex flex-col">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000] p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-4xl w-full max-h-[90vh] flex flex-col">
               <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Add New AI Model</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Fill in the model details (* required fields)</p>

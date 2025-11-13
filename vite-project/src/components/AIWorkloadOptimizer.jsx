@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Hpe, Moon, Sun, Notification, HelpOption, User} from 'grommet-icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { useWalkthrough } from '../contexts/WalkthroughContext';
@@ -9,12 +9,15 @@ import ModelTab from './ModelTab';
 import Sidebar from './Sidebar';
 
 const AIWorkloadOptimizer = () => {
-  const [activeTab, setActiveTab] = useState('optimize');
+  const location = useLocation();
+  const navState = location.state || {};
+  const initialTab = navState.targetTab || 'optimize';
+  const initialSection = navState.targetSection || 'greenmatrix';
+
+  const [activeTab, setActiveTab] = useState(initialTab);
+  const [activeSection, setActiveSection] = useState(initialSection);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { openWalkthrough } = useWalkthrough();
-
-  // Navigation state for sidebar
-  const [activeSection, setActiveSection] = useState('greenmatrix');
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
