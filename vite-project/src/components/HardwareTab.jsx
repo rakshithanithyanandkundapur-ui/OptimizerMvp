@@ -469,19 +469,20 @@ const HardwareTab = () => {
 
         {/* Add Hardware Modal */}
         {showAddModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-2xl max-h-screen overflow-y-auto">
-              <div className="flex justify-between items-center mb-4">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-2xl max-h-[90vh] flex flex-col">
+              <div className="flex justify-between items-center p-6 pb-4 border-b border-gray-200 dark:border-gray-700">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Add Hardware</h2>
                 <button
                   onClick={() => { setShowAddModal(false); resetForm(); }}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
                 >
                   ✕
                 </button>
               </div>
 
-              <form onSubmit={(e) => { e.preventDefault(); handleAddHardware(); }}>
+              <form onSubmit={(e) => { e.preventDefault(); handleAddHardware(); }} className="flex flex-col flex-1 overflow-hidden">
+                <div className="overflow-y-auto p-6 flex-1">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -685,22 +686,25 @@ const HardwareTab = () => {
                     />
                   </div>
                 </div>
+                </div>
 
-                <div className="flex justify-end space-x-4">
-                  <button
-                    type="button"
-                    onClick={() => { setShowAddModal(false); resetForm(); }}
-                    className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 disabled:opacity-50"
-                  >
-                    {loading ? 'Adding...' : 'Add Hardware'}
-                  </button>
+                <div className="border-t border-gray-200 dark:border-gray-700 p-6 pt-4">
+                  <div className="flex justify-end space-x-4">
+                    <button
+                      type="button"
+                      onClick={() => { setShowAddModal(false); resetForm(); }}
+                      className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 disabled:opacity-50"
+                    >
+                      {loading ? 'Adding...' : 'Add Hardware'}
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>
@@ -709,19 +713,20 @@ const HardwareTab = () => {
 
         {/* Edit Hardware Modal */}
         {showEditModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-2xl max-h-screen overflow-y-auto">
-              <div className="flex justify-between items-center mb-4">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-2xl max-h-[90vh] flex flex-col">
+              <div className="flex justify-between items-center p-6 pb-4 border-b border-gray-200 dark:border-gray-700">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Edit Hardware</h2>
                 <button
                   onClick={() => { setShowEditModal(false); setSelectedHardware(null); resetForm(); }}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
                 >
                   ✕
                 </button>
               </div>
 
-              <form onSubmit={(e) => { e.preventDefault(); handleUpdateHardware(); }}>
+              <form onSubmit={(e) => { e.preventDefault(); handleUpdateHardware(); }} className="flex flex-col flex-1 overflow-hidden">
+                <div className="overflow-y-auto p-6 flex-1">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -925,22 +930,25 @@ const HardwareTab = () => {
                     />
                   </div>
                 </div>
+                </div>
 
-                <div className="flex justify-end space-x-4">
-                  <button
-                    type="button"
-                    onClick={() => { setShowEditModal(false); setSelectedHardware(null); resetForm(); }}
-                    className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 disabled:opacity-50"
-                  >
-                    {loading ? 'Updating...' : 'Update Hardware'}
-                  </button>
+                <div className="border-t border-gray-200 dark:border-gray-700 p-6 pt-4">
+                  <div className="flex justify-end space-x-4">
+                    <button
+                      type="button"
+                      onClick={() => { setShowEditModal(false); setSelectedHardware(null); resetForm(); }}
+                      className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 disabled:opacity-50"
+                    >
+                      {loading ? 'Updating...' : 'Update Hardware'}
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>
