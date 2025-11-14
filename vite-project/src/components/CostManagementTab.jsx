@@ -5,6 +5,7 @@ const CostManagementTab = () => {
   const [costModels, setCostModels] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingModel, setEditingModel] = useState(null);
@@ -187,6 +188,18 @@ const CostManagementTab = () => {
     fetchCostModels();
   }, []);
 
+  // Filter cost models based on search term (searches across multiple fields)
+  const filteredCostModels = costModels.filter(model => {
+    if (!searchTerm.trim()) return true;
+    const search = searchTerm.toLowerCase();
+    return (
+      model.region?.toLowerCase().includes(search) ||
+      model.resource_name?.toLowerCase().includes(search) ||
+      model.currency?.toLowerCase().includes(search) ||
+      model.description?.toLowerCase().includes(search)
+    );
+  });
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -225,7 +238,7 @@ const CostManagementTab = () => {
         {/* Cost Models Table */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:border-gray-700 overflow-hidden mt-6">
           <div className="px-2 py-4 border-b border-gray-200 dark:border-gray-700">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-4">
               {/* Left: Title */}
               <h3 className="text-xl font-medium text-gray-800 dark:text-white">
                 Regional Cost Models
@@ -233,7 +246,8 @@ const CostManagementTab = () => {
 
               {/* Middle: Count */}
               <p className="text-md text-gray-500 dark:text-gray-400">
-                {costModels.length} cost model{costModels.length !== 1 ? 's' : ''} configured
+                {filteredCostModels.length} of {costModels.length} cost model{costModels.length !== 1 ? 's' : ''}
+                {searchTerm && ` matching "${searchTerm}"`}
               </p>
 
               {/* Right: Button */}
@@ -257,6 +271,26 @@ const CostManagementTab = () => {
                 </svg>
               </button>
             </div>
+
+            {/* Search and Filter Bar */}
+            <div className="flex items-center gap-3">
+              {/* Search Input with Icon */}
+              <div className="relative w-[400px]">
+                <input
+                  type="text"
+                  placeholder="Search by region, resource, currency..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-lg text-gray-700 dark:text-white dark:bg-gray-700 placeholder-gray-500 text-base focus:outline-none focus:ring-1 focus:ring-gray-500"
+                />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 font-bolder text-gray-900 dark:text-gray-400" />
+              </div>
+
+              {/* Filter Button */}
+              <button className="p-2 border border-gray-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <Funnel className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              </button>
+            </div>
           </div>
 
 
@@ -266,13 +300,17 @@ const CostManagementTab = () => {
               <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
               <p className="mt-2 text-gray-600 dark:text-gray-400">Loading cost models...</p>
             </div>
-          ) : costModels.length === 0 ? (
+          ) : filteredCostModels.length === 0 ? (
             <div className="p-8 text-center">
               <svg className="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              <p className="text-gray-600 dark:text-gray-400">No cost models found</p>
-              <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">Add your first cost model to get started</p>
+              <p className="text-gray-600 dark:text-gray-400">
+                {searchTerm ? 'No cost models match your search' : 'No cost models found'}
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
+                {searchTerm ? `Try a different search term` : 'Add your first cost model to get started'}
+              </p>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -300,26 +338,8 @@ const CostManagementTab = () => {
                   </tr>
                 </thead>
 
-                {/* Search and Filter Bar */}
-                <div className="mt-2 flex items-center gap-3">
-                  {/* Search Input with Icon */}
-                  <div className="relative w-[400px]">
-                    <input
-                      type="text"
-                      placeholder="Search"
-                      className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-lg text-gray-700 placeholder-gray-500 text-base focus:outline-none focus:ring-1 focus:ring-gray-500"
-                    />
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 font-bolder text-gray-900" />
-                  </div>
-
-                  {/* Filter Button */}
-                  <button className="p-2 border border-gray-400 rounded-lg hover:bg-gray-100 transition-colors">
-                    <Funnel className="w-5 h-5 text-gray-600" />
-                  </button>
-                </div>
-
                 <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                  {costModels.map((model) => (
+                  {filteredCostModels.map((model) => (
                     <tr key={model.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">

@@ -17,10 +17,10 @@ import '../styles/datepicker.css';
 
 const AdminPage = () => {
   const location = useLocation();
-  
   const navState = location.state || {};
   const initialAdminTab = navState.targetTab || 'dashboard';
   const initialSection = navState.targetSection || 'administration';
+
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { openWalkthrough } = useWalkthrough();
 
@@ -28,6 +28,16 @@ const AdminPage = () => {
   const [activeAdminTab, setActiveAdminTab] = useState(initialAdminTab);
   const [activeSection, setActiveSection] = useState(initialSection);
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  // Handle navigation from other pages with state
+  useEffect(() => {
+    if (location.state?.tab) {
+      setActiveAdminTab(location.state.tab);
+      if (location.state.section) {
+        setActiveSection(location.state.section);
+      }
+    }
+  }, [location]);
 
   // State for API data
   const [apiData, setApiData] = useState({});

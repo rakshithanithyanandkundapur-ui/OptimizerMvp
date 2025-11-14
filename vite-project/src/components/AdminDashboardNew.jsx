@@ -60,6 +60,9 @@ const AdminDashboardNew = ({
   // State for date range selection
   const [dateRange, setDateRange] = useState({ start: null, end: null });
 
+  // State for search
+  const [processSearchTerm, setProcessSearchTerm] = useState('');
+
   // State for cost calculation
   const [selectedRegion, setSelectedRegion] = useState('US');
   const [costData, setCostData] = useState(null);
@@ -103,6 +106,18 @@ const AdminDashboardNew = ({
 
   // State for top processes data
   const [topProcesses, setTopProcesses] = useState([]);
+
+  // Filter processes based on search term (searches across multiple fields)
+  const filteredTopProcesses = topProcesses.filter(process => {
+    if (!processSearchTerm.trim()) return true;
+    const search = processSearchTerm.toLowerCase();
+    return (
+      process['Process Name']?.toLowerCase().includes(search) ||
+      process['Username']?.toLowerCase().includes(search) ||
+      process['Process ID']?.toString().includes(search) ||
+      process['Status']?.toLowerCase().includes(search)
+    );
+  });
 
   // Use Walkthrough Context for modal state
   const { showModal, openWalkthrough, closeWalkthrough } = useWalkthrough();
@@ -1635,17 +1650,19 @@ const AdminDashboardNew = ({
               <div className="relative w-[400px]"> {/* wider input */}
                 <input
                   type="text"
-                  placeholder="Search"
-                  className="w-full pl-10 pr-4 py-2 border border-gray-400 dark:bg-gray-800 dark:border-gray-700 rounded-lg text-gray-700 placeholder-gray-500 text-base focus:outline-none focus:ring-1 focus:ring-gray-500"
+                  placeholder="Search by process name, user, PID, or status..."
+                  value={processSearchTerm}
+                  onChange={(e) => setProcessSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-400 dark:bg-gray-700 dark:border-gray-700 rounded-lg text-gray-700 dark:text-white placeholder-gray-500 text-base focus:outline-none focus:ring-1 focus:ring-gray-500"
                 />
                 <Search
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5  font-bolder text-gray-900"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5  font-bolder text-gray-900 dark:text-gray-400"
                 />
               </div>
 
               {/* Filter Button */}
-              <button className="p-2 border border-gray-400 rounded-lg hover:bg-gray-100 transition-colors">
-                <Funnel className="w-5 h-5 text-gray-600" />
+              <button className="p-2 border border-gray-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <Funnel className="w-5 h-5 text-gray-600 dark:text-gray-400" />
               </button>
             </div>
 
@@ -1679,7 +1696,22 @@ const AdminDashboardNew = ({
                 </tr>
               </thead>
               <tbody>
-                {topProcesses.slice(0, 5).map((process, index) => (
+                {filteredTopProcesses.length === 0 ? (
+                  <tr>
+                    <td colSpan="7" className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
+                      <div>
+                        <div className="text-2xl mb-2">🔍</div>
+                        <div className="font-medium mb-1">
+                          {processSearchTerm ? 'No processes match your search' : 'No processes found'}
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          {processSearchTerm ? `Try a different search term` : 'No process data available'}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  filteredTopProcesses.slice(0, 5).map((process, index) => (
                   <tr
                     key={process['Process ID'] || index}
                     onClick={() => handleProcessClick(process)}
@@ -1722,7 +1754,8 @@ const AdminDashboardNew = ({
                       </span>
                     </td>
                   </tr>
-                ))}
+                  ))
+                )}
               </tbody>
             </table>
           </div>

@@ -6,6 +6,7 @@ const HardwareTab = () => {
   const [hardwareData, setHardwareData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Modal states
   const [showAddModal, setShowAddModal] = useState(false);
@@ -243,38 +244,48 @@ const HardwareTab = () => {
     };
   });
 
-  console.log('Unified hardware data:', unifiedHardwareData);
-  console.log('Unified hardware data length:', unifiedHardwareData.length);
+  // Filter hardware data based on search term
+  const filteredHardwareData = unifiedHardwareData.filter(hw => {
+    if (!searchTerm.trim()) return true;
+    const search = searchTerm.toLowerCase();
+    return (
+      hw.cpuModel?.toLowerCase().includes(search) ||
+      hw.cpuBrand?.toLowerCase().includes(search) ||
+      hw.gpuModel?.toLowerCase().includes(search) ||
+      hw.gpuBrand?.toLowerCase().includes(search) ||
+      hw.id?.toString().includes(search)
+    );
+  });
 
-  // // Loading state
-  // if (loading) {
-  //   return (
-  //     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-  //       <div className="p-8 text-center">
-  //         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-  //         <p className="text-gray-600 dark:text-gray-300">Loading hardware data...</p>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  // Loading state
+  if (loading) {
+    return (
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+        <div className="p-8 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-300">Loading hardware data...</p>
+        </div>
+      </div>
+    );
+  }
 
-  // // Error state
-  // if (error) {
-  //   return (
-  //     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-  //       <div className="p-8 text-center">
-  //         <div className="text-red-500 text-xl mb-4">⚠️</div>
-  //         <p className="text-gray-600 dark:text-gray-300 mb-4">{error}</p>
-  //         <button 
-  //           onClick={() => window.location.reload()} 
-  //           className="px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors"
-  //         >
-  //           Retry
-  //         </button>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  // Error state
+  if (error) {
+    return (
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+        <div className="p-8 text-center">
+          <div className="text-red-500 text-xl mb-4">⚠️</div>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -312,15 +323,17 @@ const HardwareTab = () => {
           <div className="relative w-[400px]">
             <input
               type="text"
-              placeholder="Search"
-              className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-lg text-gray-700 placeholder-gray-500 text-base focus:outline-none focus:ring-1 focus:ring-gray-500"
+              placeholder="Search by CPU, GPU, brand, or ID..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-lg text-gray-700 dark:text-white dark:bg-gray-700 placeholder-gray-500 text-base focus:outline-none focus:ring-1 focus:ring-gray-500"
             />
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 font-bolder text-gray-900" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 font-bolder text-gray-900 dark:text-gray-400" />
           </div>
 
           {/* Filter Button */}
-          <button className="p-2 border border-gray-400 rounded-lg hover:bg-gray-100 transition-colors">
-            <Funnel className="w-5 h-5 text-gray-600" />
+          <button className="p-2 border border-gray-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+            <Funnel className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
         </div>
 
@@ -342,20 +355,22 @@ const HardwareTab = () => {
                 </tr>
               </thead>
               <tbody className="bg-gray-50 dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                {unifiedHardwareData.length === 0 ? (
+                {filteredHardwareData.length === 0 ? (
                   <tr>
                     <td colSpan="9" className="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
                       <div>
                         <div className="text-2xl mb-2">🔧</div>
-                        <div className="font-medium mb-1">No hardware found in database</div>
+                        <div className="font-medium mb-1">
+                          {searchTerm ? 'No hardware matches your search' : 'No hardware found in database'}
+                        </div>
                         <div className="text-sm text-gray-400">
-                          {loading ? 'Loading...' : `API Response: ${hardwareData.length} records`}
+                          {searchTerm ? `Searching for "${searchTerm}"` : (loading ? 'Loading...' : `API Response: ${hardwareData.length} records`)}
                         </div>
                       </div>
                     </td>
                   </tr>
                 ) : (
-                  unifiedHardwareData.map((hw) => (
+                  filteredHardwareData.map((hw) => (
                     <tr key={hw.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                       {/* ID */}
                       <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
@@ -457,13 +472,14 @@ const HardwareTab = () => {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Add Hardware</h2>
                 <button
                   onClick={() => { setShowAddModal(false); resetForm(); }}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
                 >
                   ✕
                 </button>
               </div>
 
-              <form onSubmit={(e) => { e.preventDefault(); handleAddHardware(); }}>
+              <form onSubmit={(e) => { e.preventDefault(); handleAddHardware(); }} className="flex flex-col flex-1 overflow-hidden">
+                <div className="overflow-y-auto p-6 flex-1">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -667,22 +683,25 @@ const HardwareTab = () => {
                     />
                   </div>
                 </div>
+                </div>
 
-                <div className="flex justify-end space-x-4">
-                  <button
-                    type="button"
-                    onClick={() => { setShowAddModal(false); resetForm(); }}
-                    className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 disabled:opacity-50"
-                  >
-                    {loading ? 'Adding...' : 'Add Hardware'}
-                  </button>
+                <div className="border-t border-gray-200 dark:border-gray-700 p-6 pt-4">
+                  <div className="flex justify-end space-x-4">
+                    <button
+                      type="button"
+                      onClick={() => { setShowAddModal(false); resetForm(); }}
+                      className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 disabled:opacity-50"
+                    >
+                      {loading ? 'Adding...' : 'Add Hardware'}
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>
@@ -691,19 +710,20 @@ const HardwareTab = () => {
 
         {/* Edit Hardware Modal */}
         {showEditModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-2xl max-h-screen overflow-y-auto">
-              <div className="flex justify-between items-center mb-4">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-2xl max-h-[90vh] flex flex-col">
+              <div className="flex justify-between items-center p-6 pb-4 border-b border-gray-200 dark:border-gray-700">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Edit Hardware</h2>
                 <button
                   onClick={() => { setShowEditModal(false); setSelectedHardware(null); resetForm(); }}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
                 >
                   ✕
                 </button>
               </div>
 
-              <form onSubmit={(e) => { e.preventDefault(); handleUpdateHardware(); }}>
+              <form onSubmit={(e) => { e.preventDefault(); handleUpdateHardware(); }} className="flex flex-col flex-1 overflow-hidden">
+                <div className="overflow-y-auto p-6 flex-1">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -907,22 +927,25 @@ const HardwareTab = () => {
                     />
                   </div>
                 </div>
+                </div>
 
-                <div className="flex justify-end space-x-4">
-                  <button
-                    type="button"
-                    onClick={() => { setShowEditModal(false); setSelectedHardware(null); resetForm(); }}
-                    className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 disabled:opacity-50"
-                  >
-                    {loading ? 'Updating...' : 'Update Hardware'}
-                  </button>
+                <div className="border-t border-gray-200 dark:border-gray-700 p-6 pt-4">
+                  <div className="flex justify-end space-x-4">
+                    <button
+                      type="button"
+                      onClick={() => { setShowEditModal(false); setSelectedHardware(null); resetForm(); }}
+                      className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 disabled:opacity-50"
+                    >
+                      {loading ? 'Updating...' : 'Update Hardware'}
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

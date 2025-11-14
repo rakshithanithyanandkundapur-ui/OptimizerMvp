@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Hpe, Moon, Sun, Notification, HelpOption, User} from 'grommet-icons';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
@@ -19,6 +19,16 @@ const AIWorkloadOptimizer = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { openWalkthrough } = useWalkthrough();
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  // Handle navigation from other pages with state
+  useEffect(() => {
+    if (location.state?.tab) {
+      setActiveTab(location.state.tab);
+      if (location.state.section) {
+        setActiveSection(location.state.section);
+      }
+    }
+  }, [location]);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
