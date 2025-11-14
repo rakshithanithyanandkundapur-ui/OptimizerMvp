@@ -1766,6 +1766,7 @@ const AdminDashboardNew = ({
           selectedProcess={selectedProcess}
           processRecommendations={processRecommendations}
           processRealTimeData={processRealTimeData}
+          
         />
 
         {/* Hardware Details Popup Modal */}
