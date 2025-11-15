@@ -17,12 +17,16 @@ import '../styles/datepicker.css';
 
 const AdminPage = () => {
   const location = useLocation();
-  const [activeAdminTab, setActiveAdminTab] = useState('dashboard');
+  const navState = location.state || {};
+  const initialAdminTab = navState.targetTab || 'dashboard';
+  const initialSection = navState.targetSection || 'administration';
+
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { openWalkthrough } = useWalkthrough();
 
   // Navigation state
-  const [activeSection, setActiveSection] = useState('administration');
+  const [activeAdminTab, setActiveAdminTab] = useState(initialAdminTab);
+  const [activeSection, setActiveSection] = useState(initialSection);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   // Handle navigation from other pages with state

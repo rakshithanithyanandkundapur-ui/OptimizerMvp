@@ -10,12 +10,14 @@ import Sidebar from './Sidebar';
 
 const AIWorkloadOptimizer = () => {
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState('optimize');
+  const navState = location.state || {};
+  const initialTab = navState.targetTab || 'optimize';
+  const initialSection = navState.targetSection || 'greenmatrix';
+
+  const [activeTab, setActiveTab] = useState(initialTab);
+  const [activeSection, setActiveSection] = useState(initialSection);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { openWalkthrough } = useWalkthrough();
-
-  // Navigation state for sidebar
-  const [activeSection, setActiveSection] = useState('greenmatrix');
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   // Handle navigation from other pages with state

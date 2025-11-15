@@ -3191,7 +3191,7 @@ const OptimizeTab = () => {
                     Getting Recommendations...
                   </div>
                 ) : (
-                  'Configuration'
+                  'Configuration Recommendations'
                 )}
               </button>
             )}

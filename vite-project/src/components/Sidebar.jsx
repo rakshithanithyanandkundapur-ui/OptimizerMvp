@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { Hpe, Hp } from 'grommet-icons';
 import logo from '../assets/logo.png';
@@ -26,11 +26,7 @@ import {
   ClipboardList
 } from 'lucide-react';
 
-const Sidebar = ({ activeSection, setActiveSection, activeTab, setActiveTab, isCollapsed, setIsCollapsed }) => {
-  const navigate = useNavigate();
-  const { isDarkMode } = useDarkMode();
-
-  const navigationItems = [
+const navigationItems = [
     // User Goals (at the top)
     {
       id: 'user-goals',
@@ -90,40 +86,54 @@ const Sidebar = ({ activeSection, setActiveSection, activeTab, setActiveTab, isC
     }
   ];
 
+const Sidebar = ({ activeSection, setActiveSection, activeTab, setActiveTab, isCollapsed, setIsCollapsed }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { isDarkMode } = useDarkMode();
+
   const handleItemClick = (item, child = null) => {
     // Handle User Goals and dashboard components
-    if (['user-goals', 'dashboard', 'performance', 'hardware', 'costs', 'models'].includes(item.id)) {
+    const adminItems = ['user-goals', 'dashboard', 'performance', 'hardware', 'costs', 'models', 'processes'];
+    
+    if (adminItems.includes(item.id)) {
+      const targetSection = 'administration';
+      const targetPath = (item.id === 'processes') ? '/processes' : '/';
+
       // Special handling for Process Metrics - navigate to dedicated page
       if (item.id === 'processes') {
-        navigate('/processes');
+        const targetPath = '/processes';
+        setActiveSection('administration');
+        setActiveTab('processes');
+        navigate(targetPath);
         return;
       }
 
       // If we're already on Admin page, just switch tabs
-      if (window.location.pathname === '/') {
-        setActiveSection('administration');
+      if (location.pathname === targetPath) {
+        setActiveSection(targetSection);
         setActiveTab(item.id);
       } else {
-        // Navigate to Admin page WITH tab information
-        navigate('/', { state: { tab: item.id, section: 'administration' } });
+        // Navigate to Admin page
+        navigate(targetPath, {state: { targetSection: targetSection, targetTab: item.id}});
       }
-    }
-    // Handle Process Metrics separately
-    else if (item.id === 'processes') {
-      navigate('/processes');
       return;
     }
     // Handle GreenMatrix components
-    else if (['optimize', 'model'].includes(item.id)) {
+    if (['optimize', 'model'].includes(item.id)) {
       // If we're already on GreenMatrix page, just switch tabs
-      if (window.location.pathname === '/workload') {
-        setActiveSection('greenmatrix');
+      const targetSection = 'greenmatrix';
+      const targetPath = '/workload';
+      
+      if (location.pathname === targetPath){
+        setActiveSection(targetSection);
         setActiveTab(item.id);
       } else {
-        // Navigate to GreenMatrix workload page WITH tab information
-        navigate('/workload', { state: { tab: item.id, section: 'greenmatrix' } });
+        // Navigate to GreenMatrix workload page
+        navigate(targetPath, {state: { targetSection: targetSection, targetTab: item.id}});
       }
-    } else {
+      return
+    } 
+    else {
       setActiveSection(item.id);
       setActiveTab(child ? child.id : null);
     }
@@ -146,7 +156,7 @@ const Sidebar = ({ activeSection, setActiveSection, activeTab, setActiveTab, isC
 
     // Handle Process Metrics
     if (item.id === 'processes') {
-      return window.location.pathname === '/processes';
+      return location.pathname === '/processes';
     }
 
     return activeSection === item.id;
