@@ -230,12 +230,15 @@ const UserGoalsTab = () => {
                   {renderFieldBadge('parameters')}
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  min="1"
+                  step="1"
                   value={config.parameters}
                   onChange={(e) => updateField('parameters', e.target.value)}
                   placeholder="e.g., 7000"
                   className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                 />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter a positive integer (e.g., 7000 for 7B parameters)</p>
               </div>
 
               {/* Model Size - AUTO-FILLED, Editable */}
@@ -245,12 +248,15 @@ const UserGoalsTab = () => {
                   {renderFieldBadge('modelSize')}
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  min="1"
+                  step="1"
                   value={config.modelSize}
                   onChange={(e) => updateField('modelSize', e.target.value)}
                   placeholder="e.g., 14000"
                   className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                 />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter model size in megabytes (positive integer)</p>
               </div>
 
               {/* Precision - AUTO-FILLED, Editable */}
@@ -275,12 +281,15 @@ const UserGoalsTab = () => {
                   {renderFieldBadge('vocabularySize')}
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  min="1"
+                  step="1"
                   value={config.vocabularySize}
                   onChange={(e) => updateField('vocabularySize', e.target.value)}
                   placeholder="e.g., 32000"
                   className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                 />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter vocabulary size (positive integer)</p>
               </div>
 
               {/* Activation Function - AUTO-FILLED, Editable */}
@@ -305,12 +314,15 @@ const UserGoalsTab = () => {
                   {renderFieldBadge('gflops')}
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  min="0.1"
+                  step="0.1"
                   value={config.gflops}
                   onChange={(e) => updateField('gflops', e.target.value)}
                   placeholder="e.g., 500"
                   className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                 />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter GFLOPs in billions (e.g., 500 or 123.5)</p>
               </div>
 
               {/* Hidden Layers - AUTO-FILLED, Editable */}
@@ -320,12 +332,15 @@ const UserGoalsTab = () => {
                   {renderFieldBadge('hiddenLayers')}
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  min="1"
+                  step="1"
                   value={config.hiddenLayers}
                   onChange={(e) => updateField('hiddenLayers', e.target.value)}
                   placeholder="e.g., 32"
                   className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                 />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter number of hidden layers (positive integer)</p>
               </div>
 
               {/* Attention Layers - AUTO-FILLED, Editable */}
@@ -335,12 +350,15 @@ const UserGoalsTab = () => {
                   {renderFieldBadge('attentionLayers')}
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  min="1"
+                  step="1"
                   value={config.attentionLayers}
                   onChange={(e) => updateField('attentionLayers', e.target.value)}
                   placeholder="e.g., 32"
                   className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                 />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter number of attention layers (positive integer)</p>
               </div>
 
               {/* Embedding Dimension - AUTO-FILLED, Editable */}
@@ -350,12 +368,15 @@ const UserGoalsTab = () => {
                   {renderFieldBadge('embeddingDimension')}
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  min="1"
+                  step="1"
                   value={config.embeddingDimension}
                   onChange={(e) => updateField('embeddingDimension', e.target.value)}
                   placeholder="e.g., 768"
                   className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                 />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter embedding dimension (positive integer)</p>
               </div>
 
               {/* FFN Dimension - AUTO-FILLED, Editable */}
@@ -365,12 +386,15 @@ const UserGoalsTab = () => {
                   {renderFieldBadge('ffnDimension')}
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  min="1"
+                  step="1"
                   value={config.ffnDimension}
                   onChange={(e) => updateField('ffnDimension', e.target.value)}
                   placeholder="e.g., 3072"
                   className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                 />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter FFN dimension (positive integer)</p>
               </div>
 
               {/* Business Objectives - USER INPUT, Dropdown */}
@@ -411,12 +435,16 @@ const UserGoalsTab = () => {
                   Number of GPUs that the model will run on?
                 </label>
                 <input
-                  type="text"
+                  type="number"
+                  min="1"
+                  max="64"
+                  step="1"
                   value={config.numberOfGpus}
                   onChange={(e) => updateField('numberOfGpus', e.target.value)}
                   placeholder="e.g., 4"
                   className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                 />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter number of GPUs (1-64)</p>
               </div>
 
             </div>
@@ -437,12 +465,15 @@ const UserGoalsTab = () => {
                     What is the typical number of input size?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.inferenceInputSize}
                     onChange={(e) => updateField('inferenceInputSize', e.target.value)}
-                    placeholder="e.g., 512 tokens"
+                    placeholder="e.g., 512"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter input size in tokens (positive integer)</p>
                 </div>
 
                 {/* Output Size */}
@@ -451,12 +482,15 @@ const UserGoalsTab = () => {
                     What is the expected number of output size to be generated per request?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.inferenceOutputSize}
                     onChange={(e) => updateField('inferenceOutputSize', e.target.value)}
-                    placeholder="e.g., 256 tokens"
+                    placeholder="e.g., 256"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter output size in tokens (positive integer)</p>
                 </div>
 
                 {/* Deployment Scenario */}
@@ -481,12 +515,15 @@ const UserGoalsTab = () => {
                     What batch size do you plan to use for inference?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.inferenceBatchSize}
                     onChange={(e) => updateField('inferenceBatchSize', e.target.value)}
                     placeholder="e.g., 32"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter batch size (positive integer)</p>
                 </div>
 
                 {/* Target Throughput */}
@@ -495,12 +532,15 @@ const UserGoalsTab = () => {
                     What is your target throughput (e.g., tokens per second, inferences per second)?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="0.1"
+                    step="0.1"
                     value={config.targetThroughput}
                     onChange={(e) => updateField('targetThroughput', e.target.value)}
-                    placeholder="e.g., 1000 tokens/sec"
+                    placeholder="e.g., 1000"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter target throughput (tokens/sec or inferences/sec)</p>
                 </div>
 
                 {/* Target Latency */}
@@ -509,12 +549,15 @@ const UserGoalsTab = () => {
                     What is the maximum acceptable latency for a single inference request (in milliseconds)?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.targetLatency}
                     onChange={(e) => updateField('targetLatency', e.target.value)}
-                    placeholder="e.g., 100 ms"
+                    placeholder="e.g., 100"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter latency in milliseconds (positive integer)</p>
                 </div>
 
                 {/* Concurrent Users */}
@@ -523,12 +566,15 @@ const UserGoalsTab = () => {
                     How many concurrent users will be accessing the model simultaneously?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.concurrentUsers}
                     onChange={(e) => updateField('concurrentUsers', e.target.value)}
                     placeholder="e.g., 100"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter number of concurrent users (positive integer)</p>
                 </div>
 
                 {/* Requests per Second */}
@@ -537,12 +583,15 @@ const UserGoalsTab = () => {
                     How many requests per second do you expect to handle at peak load?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.requestsPerSecond}
                     onChange={(e) => updateField('requestsPerSecond', e.target.value)}
                     placeholder="e.g., 500"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter requests per second (positive integer)</p>
                 </div>
 
                 {/* Inference Budget */}
@@ -565,12 +614,15 @@ const UserGoalsTab = () => {
                     How quickly should the response begin? (Target Time-to-First-Token in ms)
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.timeToFirstToken}
                     onChange={(e) => updateField('timeToFirstToken', e.target.value)}
-                    placeholder="e.g., 50 ms"
+                    placeholder="e.g., 50"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter time in milliseconds (positive integer)</p>
                 </div>
 
               </div>
@@ -625,12 +677,15 @@ const UserGoalsTab = () => {
                     What is the size of your training dataset (e.g., number of samples)?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.trainingDatasetSize}
                     onChange={(e) => updateField('trainingDatasetSize', e.target.value)}
-                    placeholder="e.g., 1000000 samples"
+                    placeholder="e.g., 1000000"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter number of samples (positive integer)</p>
                 </div>
 
                 {/* Training Input Size */}
@@ -639,12 +694,15 @@ const UserGoalsTab = () => {
                     What is the input size or sequence length for the training data?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.trainingInputSize}
                     onChange={(e) => updateField('trainingInputSize', e.target.value)}
-                    placeholder="e.g., 512 tokens"
+                    placeholder="e.g., 512"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter input size in tokens (positive integer)</p>
                 </div>
 
                 {/* Training Output Size */}
@@ -653,12 +711,15 @@ const UserGoalsTab = () => {
                     What is the expected output size or sequence length?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.trainingOutputSize}
                     onChange={(e) => updateField('trainingOutputSize', e.target.value)}
-                    placeholder="e.g., 512 tokens"
+                    placeholder="e.g., 512"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter output size in tokens (positive integer)</p>
                 </div>
 
                 {/* Training Batch Size */}
@@ -667,12 +728,15 @@ const UserGoalsTab = () => {
                     What batch size will be used for training?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.trainingBatchSize}
                     onChange={(e) => updateField('trainingBatchSize', e.target.value)}
                     placeholder="e.g., 32"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter batch size (positive integer)</p>
                 </div>
 
                 {/* Optimizer */}
@@ -697,12 +761,16 @@ const UserGoalsTab = () => {
                     What is the learning rate for the training process?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="0.000001"
+                    max="1"
+                    step="0.000001"
                     value={config.learningRate}
                     onChange={(e) => updateField('learningRate', e.target.value)}
                     placeholder="e.g., 0.001"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter learning rate (0 to 1, e.g., 0.001 or 0.0001)</p>
                 </div>
 
                 {/* Epochs */}
@@ -711,12 +779,15 @@ const UserGoalsTab = () => {
                     How many epochs do you plan to train for?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.epochs}
                     onChange={(e) => updateField('epochs', e.target.value)}
                     placeholder="e.g., 10"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter number of epochs (positive integer)</p>
                 </div>
 
                 {/* Target Training Time */}
@@ -753,12 +824,15 @@ const UserGoalsTab = () => {
                     How many concurrent training jobs do you plan to run?
                   </label>
                   <input
-                    type="text"
+                    type="number"
+                    min="1"
+                    step="1"
                     value={config.concurrentTrainingJobs}
                     onChange={(e) => updateField('concurrentTrainingJobs', e.target.value)}
                     placeholder="e.g., 5"
                     className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-[#01a982] focus:border-transparent"
                   />
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter number of concurrent jobs (positive integer)</p>
                 </div>
 
                 {/* Training Budget */}
