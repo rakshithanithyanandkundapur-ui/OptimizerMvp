@@ -143,7 +143,7 @@ cd GreenMatrix
 chmod +x setup-greenmatrix.sh
 
 # Run automated setup with sudo (required for systemd services)
-sudo ./setup-greenmatrix.sh
+sudo ./setup-greenmatrix.sh  (check deployment document for additional help)
 ```
 
 The script will **automatically**:
