@@ -483,7 +483,7 @@ const HardwareTab = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU
+                      CPU *
                     </label>
                     <input
                       type="text"
@@ -492,12 +492,13 @@ const HardwareTab = () => {
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                       required
+                      pattern="[A-Za-z\s]+"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU
+                      GPU *
                     </label>
                     <input
                       type="text"
@@ -506,12 +507,13 @@ const HardwareTab = () => {
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                       required
+                      pattern="[A-Za-z\s]+"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Number of GPUs
+                      Number of GPUs *
                     </label>
                     <input
                       type="number"
@@ -520,12 +522,14 @@ const HardwareTab = () => {
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                       min="1"
+                      pattern='[0-9]*'
+                      required
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU Memory (VRAM MB)
+                      GPU Memory (VRAM MB) *
                     </label>
                     <input
                       type="number"
@@ -533,12 +537,14 @@ const HardwareTab = () => {
                       value={formData.gpu_memory_total_vram_mb}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      pattern='[0-9]*'
+                      required
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU Graphics Clock
+                      GPU Graphics Clock *
                     </label>
                     <input
                       type="number"
@@ -547,12 +553,15 @@ const HardwareTab = () => {
                       value={formData.gpu_graphics_clock}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      min={0}
+                      max={5}
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU Memory Clock
+                      GPU Memory Clock *
                     </label>
                     <input
                       type="number"
@@ -561,12 +570,13 @@ const HardwareTab = () => {
                       value={formData.gpu_memory_clock}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU SM Cores
+                      GPU SM Cores *
                     </label>
                     <input
                       type="number"
@@ -574,12 +584,14 @@ const HardwareTab = () => {
                       value={formData.gpu_sm_cores}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU CUDA Cores
+                      GPU CUDA Cores *
                     </label>
                     <input
                       type="number"
@@ -587,12 +599,14 @@ const HardwareTab = () => {
                       value={formData.gpu_cuda_cores}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU Total Cores
+                      CPU Total Cores *
                     </label>
                     <input
                       type="number"
@@ -600,12 +614,14 @@ const HardwareTab = () => {
                       value={formData.cpu_total_cores}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU Threads per Core
+                      CPU Threads per Core *
                     </label>
                     <input
                       type="number"
@@ -613,12 +629,14 @@ const HardwareTab = () => {
                       value={formData.cpu_threads_per_core}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU Base Clock (GHz)
+                      CPU Base Clock (GHz) *
                     </label>
                     <input
                       type="number"
@@ -627,12 +645,13 @@ const HardwareTab = () => {
                       value={formData.cpu_base_clock_ghz}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU Max Frequency (GHz)
+                      CPU Max Frequency (GHz) *
                     </label>
                     <input
                       type="number"
@@ -641,12 +660,13 @@ const HardwareTab = () => {
                       value={formData.cpu_max_frequency_ghz}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      L1 Cache
+                      L1 Cache *
                     </label>
                     <input
                       type="number"
@@ -654,12 +674,14 @@ const HardwareTab = () => {
                       value={formData.l1_cache}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU Power Consumption
+                      CPU Power Consumption *
                     </label>
                     <input
                       type="number"
@@ -667,12 +689,14 @@ const HardwareTab = () => {
                       value={formData.cpu_power_consumption}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU Power Consumption
+                      GPU Power Consumption *
                     </label>
                     <input
                       type="number"
@@ -680,6 +704,8 @@ const HardwareTab = () => {
                       value={formData.gpu_power_consumption}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
                 </div>
@@ -727,7 +753,7 @@ const HardwareTab = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU
+                      CPU *
                     </label>
                     <input
                       type="text"
@@ -736,12 +762,13 @@ const HardwareTab = () => {
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                       required
+                      pattern="[A-Za-z\s]+"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU
+                      GPU *
                     </label>
                     <input
                       type="text"
@@ -750,12 +777,13 @@ const HardwareTab = () => {
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                       required
+                      pattern="[A-Za-z\s]+"
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Number of GPUs
+                      Number of GPUs *
                     </label>
                     <input
                       type="number"
@@ -764,12 +792,14 @@ const HardwareTab = () => {
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                       min="1"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU Memory (VRAM MB)
+                      GPU Memory (VRAM MB) *
                     </label>
                     <input
                       type="number"
@@ -777,12 +807,14 @@ const HardwareTab = () => {
                       value={formData.gpu_memory_total_vram_mb}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU Graphics Clock
+                      GPU Graphics Clock *
                     </label>
                     <input
                       type="number"
@@ -791,12 +823,15 @@ const HardwareTab = () => {
                       value={formData.gpu_graphics_clock}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      max={5}
+                      min={0}
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU Memory Clock
+                      GPU Memory Clock *
                     </label>
                     <input
                       type="number"
@@ -805,12 +840,13 @@ const HardwareTab = () => {
                       value={formData.gpu_memory_clock}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU SM Cores
+                      GPU SM Cores *
                     </label>
                     <input
                       type="number"
@@ -818,12 +854,14 @@ const HardwareTab = () => {
                       value={formData.gpu_sm_cores}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU CUDA Cores
+                      GPU CUDA Cores *
                     </label>
                     <input
                       type="number"
@@ -831,12 +869,14 @@ const HardwareTab = () => {
                       value={formData.gpu_cuda_cores}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU Total Cores
+                      CPU Total Cores *
                     </label>
                     <input
                       type="number"
@@ -844,12 +884,14 @@ const HardwareTab = () => {
                       value={formData.cpu_total_cores}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU Threads per Core
+                      CPU Threads per Core *
                     </label>
                     <input
                       type="number"
@@ -857,12 +899,14 @@ const HardwareTab = () => {
                       value={formData.cpu_threads_per_core}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU Base Clock (GHz)
+                      CPU Base Clock (GHz) *
                     </label>
                     <input
                       type="number"
@@ -871,12 +915,14 @@ const HardwareTab = () => {
                       value={formData.cpu_base_clock_ghz}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU Max Frequency (GHz)
+                      CPU Max Frequency (GHz) *
                     </label>
                     <input
                       type="number"
@@ -885,12 +931,14 @@ const HardwareTab = () => {
                       value={formData.cpu_max_frequency_ghz}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      L1 Cache
+                      L1 Cache *
                     </label>
                     <input
                       type="number"
@@ -898,12 +946,14 @@ const HardwareTab = () => {
                       value={formData.l1_cache}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      CPU Power Consumption
+                      CPU Power Consumption *
                     </label>
                     <input
                       type="number"
@@ -911,12 +961,14 @@ const HardwareTab = () => {
                       value={formData.cpu_power_consumption}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      GPU Power Consumption
+                      GPU Power Consumption *
                     </label>
                     <input
                       type="number"
@@ -924,6 +976,8 @@ const HardwareTab = () => {
                       value={formData.gpu_power_consumption}
                       onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      required
+                      pattern='[0-9]*'
                     />
                   </div>
                 </div>
