@@ -228,7 +228,7 @@ const Sidebar = ({ activeSection, setActiveSection, activeTab, setActiveTab, isC
               </button>
             </div>
           )}
-          <ul className="mx-4 text-xl rounded-lg overflow-hidden dark:bg-gray-800">
+          <ul className="mx-4 text-xl rounded-lg overflow-hidden dark:bg-gray-800 pb-16">
             {navigationItems.map((item) => {
               const Icon = item.icon;
               const isActive = isItemActive(item);
