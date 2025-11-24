@@ -1170,11 +1170,11 @@ const AdminDashboardNew = ({
             </div>
             <div className="flex flex-nowrap items-center space-x-4">
 
-              {/* Cost Calculation Region /}
+              {/* Cost Calculation Region */}
               <select
                 value={selectedRegion}
                 onChange={(e) => setSelectedRegion(e.target.value)}
-                className="px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 max-w-40 h-10 focus:ring-2 focus:ring-[#01a982]"
+                className="px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 w-32 h-10 focus:ring-2 focus:ring-[#01a982]"
               >
                 <option default value="">Cost Calculation Region</option>
                 {availableRegions.map(region => (
@@ -1188,7 +1188,7 @@ const AdminDashboardNew = ({
               <select
                 value={viewMode}
                 onChange={(e) => setViewMode(e.target.value)}
-                className="px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 w-90 h-10 focus:ring-2 focus:ring-[#01a982]"
+                className="px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 w-28 h-10 focus:ring-2 focus:ring-[#01a982]"
               >
                 <option value="day">Daily</option>
                 <option value="week">Weekly</option>
@@ -1201,7 +1201,7 @@ const AdminDashboardNew = ({
                 onChange={(date) => setDateRange(prev => ({ ...prev, start: date }))}
                 minDate={minDate}
                 maxDate={maxDate}
-                className="max-w-32 px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 h-10 focus:ring-2 focus:ring-[#01a982]"
+                className="max-w-28 px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 h-10 w-28 focus:ring-2 focus:ring-[#01a982]"
                 placeholderText="mm/dd/yyyy"
                 dateFormat="MM/dd/yyyy"
               />
@@ -1215,7 +1215,7 @@ const AdminDashboardNew = ({
                 endDate={dateRange.end}
                 minDate={dateRange.start || minDate}
                 maxDate={maxDate}
-                className="max-w-32 px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 h-10 focus:ring-2 focus:ring-[#01a982]"
+                className="max-w-28 px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-[16px] font-lite text-gray-600 dark:text-white rounded-lg border-[1.5px] border-gray-400 dark:border-gray-600 h-10 w-28 focus:ring-2 focus:ring-[#01a982]"
                 placeholderText="mm/dd/yyyy"
                 dateFormat="MM/dd/yyyy"
               />
